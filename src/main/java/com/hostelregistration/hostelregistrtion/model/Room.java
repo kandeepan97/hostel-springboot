@@ -5,10 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Locale;
 import java.util.Set;
 
@@ -21,20 +18,37 @@ public class Room {
 
     @Id
     private String roomid;
-    private String hostelId;
     private Long numberOfBeds;
     private Long numberOfStudentsNow;
     private String floorNumber;
-    private String hostelType;
+    private String gender;
     private String year;
     private String faculty;
+    private Long availableBeds;
 
+    @ManyToOne
+    @JoinColumn(name="hostelid",insertable = false,updatable = false)
+    private Hostel hostel;
+
+    private String hostelid;
 
     public String getROOMID() {
         return roomid;
     }
 
+    public Long getNumberOfBeds() {
+        return numberOfBeds;
+    }
 
+    public void setNumberOfBeds(Long numberOfBeds) {
+        this.numberOfBeds = numberOfBeds;
+    }
 
+    public Long getAvailableBeds() {
+        return availableBeds;
+    }
 
+    public void setAvailableBeds(Long availableBeds) {
+        this.availableBeds = availableBeds;
+    }
 }

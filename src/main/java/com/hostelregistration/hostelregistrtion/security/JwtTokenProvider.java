@@ -60,7 +60,7 @@ public class JwtTokenProvider {
         claims.put("email", warden.getEmail());
         claims.put("firstName", warden.getFirstName());
         claims.put("lastName", warden.getLastName());
-        claims.put("hostelId",warden.getHostelId());
+
 
 
 

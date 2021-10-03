@@ -2,6 +2,7 @@ package com.hostelregistration.hostelregistrtion.conroller;
 
 
 import com.hostelregistration.hostelregistrtion.model.Admin;
+import com.hostelregistration.hostelregistrtion.model.Room;
 import com.hostelregistration.hostelregistrtion.model.Student;
 import com.hostelregistration.hostelregistrtion.payload.JWTLoginSucessResponse;
 import com.hostelregistration.hostelregistrtion.payload.LoginRequest;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Collection;
+import java.util.Optional;
 
 import static com.hostelregistration.hostelregistrtion.security.SecurityConstants.TOKEN_PREFIX;
 
@@ -95,6 +97,12 @@ public class AdminController {
     ResponseEntity<Admin> updateAdmin(@Valid @RequestBody Admin admin){
         Admin result= adminRepository.save(admin);
         return ResponseEntity.ok().body(result);
+    }
+
+    @GetMapping("/admin/{id}")
+    ResponseEntity<?> getAdmin(@PathVariable String id){
+        Optional<Admin> admin =adminRepository.findById(id);
+        return admin.map(response -> ResponseEntity.ok().body(response)).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
 

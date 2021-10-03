@@ -20,18 +20,23 @@ import java.util.Collection;
 @NoArgsConstructor
 public class Student implements UserDetails {
 
-    @Id
+
     @Column(name = "studentid",unique = true)
     private String studentid;
+
+    @Id
     @Email(message = "Valid Email is required")
     @Column(name="email",unique = true)
     @NotBlank(message = "Email is required")
     private String email;
+
     @NonNull
     @NotBlank(message = "First Name is required")
     private String firstName;
+
     @NotBlank(message = "Last Name is required")
     private String lastName;
+
     @NotEmpty()
     @NotBlank(message = "Address is required")
     private String address;
@@ -44,8 +49,6 @@ public class Student implements UserDetails {
     private String faculty;
     @NotBlank(message = "Department is required")
     private String department;
-    private String roomId;
-    private String hostelId;
     @NotBlank(message = "Gender is required")
     private String gender;
     @NotBlank(message = "Password is required")
@@ -54,11 +57,44 @@ public class Student implements UserDetails {
     private String confirmPassword;
     private String role;
 
+    @ManyToOne
+    @JoinColumn(name="hostelId",insertable = false,updatable = false)
+    private Hostel hostel;
+
+    private String hostelId;
+
+    @ManyToOne
+    @JoinColumn(name="roomId",insertable = false,updatable = false)
+    private Room room;
+
+    private String roomId;
 
 
 
+    public String getYear() {
+        return year;
+    }
 
-  //  @OneToOne(mappedBy = "student", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    public void setYear(String year) {
+        this.year = year;
+    }
+
+    public String getFaculty() {
+        return faculty;
+    }
+
+    public void setFaculty(String faculty) {
+        this.faculty = faculty;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+//  @OneToOne(mappedBy = "student", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
   //  private  Login login;
 
 

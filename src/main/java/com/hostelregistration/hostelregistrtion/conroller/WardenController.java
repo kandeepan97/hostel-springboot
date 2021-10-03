@@ -79,6 +79,13 @@ public class WardenController {
         return ResponseEntity.ok().body(result);
     }
 
+    @GetMapping("/warden/email/{email}")
+    ResponseEntity<?> getWardenByEmail(@PathVariable String email){
+        Optional<Warden> warden = Optional.ofNullable(wardenRepository.findByEmail(email));
+        return warden.map(response -> ResponseEntity.ok().body(response)).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+
    /* @PostMapping("/loginwarden")
     public ResponseEntity<?> authenticateWarden(@Valid @RequestBody LoginRequest loginRequest, BindingResult result){
         ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);

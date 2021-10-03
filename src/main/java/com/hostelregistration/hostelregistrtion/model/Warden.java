@@ -27,13 +27,13 @@ public class Warden implements UserDetails {
     private Long mobileNumber;
     private String firstName;
     private String lastName;
-    private String hostelId;
     private String password;
     private String confirmPassword;
     private String role;
+    private String resetPasswordToken;
 
-   @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, mappedBy = "warden", orphanRemoval = true)
-    private List<Hostel> hostels = new ArrayList<>();
+  // @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, mappedBy = "warden", orphanRemoval = true)
+  //  private List<Hostel> hostels = new ArrayList<>();
 
    // @OneToOne(mappedBy = "warden", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     // private  Login login;
@@ -103,9 +103,7 @@ public class Warden implements UserDetails {
         this.lastName = lastName;
     }
 
-    public void setHostelId(String hostelId) {
-        this.hostelId = hostelId;
-    }
+
 
     public String getRole() {
         return role;
@@ -115,13 +113,13 @@ public class Warden implements UserDetails {
         this.role = role;
     }
 
-    public List<Hostel> getHostels() {
-        return hostels;
-    }
+//    public List<Hostel> getHostels() {
+//        return hostels;
+//    }
 
-    public void setHostels(List<Hostel> hostels) {
-        this.hostels = hostels;
-    }
+//    public void setHostels(List<Hostel> hostels) {
+//        this.hostels = hostels;
+//    }
 
 
     @Override
@@ -153,9 +151,11 @@ public class Warden implements UserDetails {
         return confirmPassword;
     }
 
+    public String getResetPasswordToken() {
+        return resetPasswordToken;
+    }
 
-    public String getHostelId() { return hostelId;}
-
-
-
+    public void setResetPasswordToken(String resetPasswordToken) {
+        this.resetPasswordToken = resetPasswordToken;
+    }
 }

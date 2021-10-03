@@ -19,4 +19,6 @@ public interface WardenRepository extends JpaRepository<Warden, String> {
     @Query(value= "SELECT Warden.role FROM Warden where Warden.email = :email", nativeQuery = true)
     String findNameByEmail(@Param("email") String email);
 
+    public Warden findByResetPasswordToken(String token);
+
 }

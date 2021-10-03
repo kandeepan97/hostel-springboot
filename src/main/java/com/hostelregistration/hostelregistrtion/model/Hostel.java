@@ -19,13 +19,23 @@ public class Hostel {
     private String email;
     private String hostelType;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnore
+
+
+    @ManyToOne
+    @JoinColumn(name="wardenid",insertable = false,updatable = false)
     private Warden warden;
 
+    private String wardenid;
 
 
 
+    public String getWardenid() {
+        return wardenid;
+    }
+
+    public void setWardenid(String wardenid) {
+        this.wardenid = wardenid;
+    }
 
 
     public void setHostelid(String hostelid) {

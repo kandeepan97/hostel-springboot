@@ -29,7 +29,8 @@ public class RoomController {
     }
 
     @PostMapping("/room")
-    ResponseEntity<Room> createRoom(@Validated @RequestBody Room room) throws URISyntaxException {
+    ResponseEntity<Room> createRoom(@RequestBody Room room) throws URISyntaxException {
+        room.setAvailableBeds(room.getNumberOfBeds());
         Room result = roomRepository.save(room);
         return ResponseEntity.created(new URI("/api/room" + result.getROOMID())).body(result);
     }
@@ -52,4 +53,9 @@ public class RoomController {
         return ResponseEntity.ok().build();
     }
 
+    static void roomAvalabilty() {
+
+
+    }
 }
+
