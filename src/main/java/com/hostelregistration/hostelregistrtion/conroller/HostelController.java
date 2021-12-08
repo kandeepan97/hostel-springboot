@@ -43,7 +43,7 @@ public class HostelController {
     @PostMapping("/hostel")
     ResponseEntity<Hostel> createHostel(@Validated @RequestBody Hostel hostel) throws URISyntaxException {
         Hostel result = hostelRepository.save(hostel);
-        return ResponseEntity.created(new URI("/api/hostel" + result.getHOSTELID())).body(result);
+        return ResponseEntity.created(new URI("/api/hostel" + result.getHostelid())).body(result);
     }
 
     @GetMapping("/hostel/{id}")

@@ -80,10 +80,10 @@ public class JwtTokenProvider {
 
         Date expiryDate = new Date(now.getTime() + EXPIRATION_TIME);
 
-        String adminid = admin.getadminid();
+        String adminid = admin.getAdminid();
 
         Map<String, Object> claims = new HashMap<>();
-        claims.put("adminid", admin.getadminid());
+        claims.put("adminid", admin.getAdminid());
         claims.put("email", admin.getEmail());
 
 

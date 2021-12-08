@@ -30,6 +30,22 @@ public class Room {
     @JoinColumn(name="hostelid",insertable = false,updatable = false)
     private Hostel hostel;
 
+    public Hostel getHostel() {
+        return hostel;
+    }
+
+    public void setHostel(Hostel hostel) {
+        this.hostel = hostel;
+    }
+
+    public String getHostelid() {
+        return hostelid;
+    }
+
+    public void setHostelid(String hostelid) {
+        this.hostelid = hostelid;
+    }
+
     private String hostelid;
 
     public String getROOMID() {

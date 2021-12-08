@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -26,6 +28,18 @@ public class RoomController {
     @GetMapping("/rooms")
     Collection<Room> rooms() {
         return roomRepository.findAll();
+    }
+
+    @GetMapping("/rooms/{email}")
+    Collection<Room> roomsOfWarden(@PathVariable String email) {
+        List<Room> allAvailableRooms = roomRepository.findAll();
+        List<Room> result = new LinkedList<>();
+        for (Room each : allAvailableRooms) {
+            if (each.getHostel().getEmail().equals(email)) {
+                result.add(each);
+            }
+        }
+        return result;
     }
 
     @PostMapping("/room")
@@ -51,6 +65,15 @@ public class RoomController {
     ResponseEntity<?> deleteRoom(@PathVariable String id){
         roomRepository.deleteById(id);
         return ResponseEntity.ok().build();
+    }
+
+    @PutMapping("/room/{id}")
+    ResponseEntity<Room> updateNumberOfBedsInRoom(@PathVariable String id){
+        Optional<Room> optionalResult= roomRepository.findById(id);
+        Room result = optionalResult.get();
+        result.setAvailableBeds(result.getAvailableBeds() - 1);
+        roomRepository.save(result);
+        return ResponseEntity.ok().body(result);
     }
 
     static void roomAvalabilty() {

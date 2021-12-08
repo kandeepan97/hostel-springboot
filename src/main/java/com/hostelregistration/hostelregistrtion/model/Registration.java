@@ -21,8 +21,7 @@ public class Registration {
     private Integer registrationid;
 
     private String registrationDate;
-    private String hostelName;
-    private String roomId;
+
     private String paymentId;
     private String status;
     private String firstName;
@@ -32,9 +31,6 @@ public class Registration {
     private String distance;
     private String district;
     private String province;
-    private String floorNumber;
-    private String numberOfBeds;
-    private String hostelId;
     private String paymentDate;
 
 
@@ -44,6 +40,23 @@ public class Registration {
 
     private String email;
 
+    @ManyToOne
+    @JoinColumn(name="roomId",insertable = false,updatable = false)
+    private Room room;
+
+
+
+
+
+    public Room getRoom() {
+        return room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
+    }
+
+    private String roomId;
 
     public String getStatus() {
         return status;
@@ -56,4 +69,6 @@ public class Registration {
     public Integer getREGISTRATIONID() {
         return registrationid;
     }
+
+
 }

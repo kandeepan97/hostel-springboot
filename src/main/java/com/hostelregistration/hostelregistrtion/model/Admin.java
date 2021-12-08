@@ -25,8 +25,25 @@ public class Admin implements UserDetails {
     private String password;
     private String confirmPassword;
     private String role;
+    private String resetPasswordToken;
 
-   // @OneToOne(mappedBy = "admin", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    public String getResetPasswordToken() {
+        return resetPasswordToken;
+    }
+
+    public void setResetPasswordToken(String resetPasswordToken) {
+        this.resetPasswordToken = resetPasswordToken;
+    }
+
+    public String getAdminid() {
+        return adminid;
+    }
+
+    public void setAdminid(String adminid) {
+        this.adminid = adminid;
+    }
+
+    // @OneToOne(mappedBy = "admin", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
    // private  Login login;
 
 
@@ -35,10 +52,6 @@ public class Admin implements UserDetails {
     @JoinColumn(name = "login_email", nullable = false)
     private Login login;
 */
-
-    public String getadminid() {
-        return adminid;
-    }
 
     public Object getEmail() {
         return email;
@@ -56,7 +69,7 @@ public class Admin implements UserDetails {
 
     @Override
     public String getUsername() {
-        return null;
+        return role;
     }
 
     @Override
@@ -74,12 +87,33 @@ public class Admin implements UserDetails {
         return true;
     }
 
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     @Override
     public boolean isEnabled() {
         return true;
-    }
-
-    public void setPassword(String encode) {
     }
 }
 

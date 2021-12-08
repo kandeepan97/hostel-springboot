@@ -69,7 +69,16 @@ public class Student implements UserDetails {
 
     private String roomId;
 
+    private String resetPasswordToken;
 
+
+    public String getResetPasswordToken() {
+        return resetPasswordToken;
+    }
+
+    public void setResetPasswordToken(String resetPasswordToken) {
+        this.resetPasswordToken = resetPasswordToken;
+    }
 
     public String getYear() {
         return year;
@@ -178,5 +187,13 @@ public class Student implements UserDetails {
 
     public String getRole() {
         return role;
+    }
+
+    public Hostel getHostel() {
+        return hostel;
+    }
+
+    public void setHostel(Hostel hostel) {
+        this.hostel = hostel;
     }
 }

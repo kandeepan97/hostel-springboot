@@ -103,6 +103,8 @@ public class WardenController {
         return ResponseEntity.ok(new JWTLoginSucessResponse(true,jwt ,wardenRepository.findNameByEmail(loginRequest.getEmail()) ));
      }
 
+    */
+
     @DeleteMapping("/warden/{id}")
     ResponseEntity<?> deleteWarden(@PathVariable String id){
         wardenRepository.deleteById(id);
@@ -110,6 +112,6 @@ public class WardenController {
     }
 
 
-*/
+
 
 }

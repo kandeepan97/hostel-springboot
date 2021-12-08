@@ -4,6 +4,7 @@ package com.hostelregistration.hostelregistrtion.conroller;
 import com.hostelregistration.hostelregistrtion.model.Admin;
 import com.hostelregistration.hostelregistrtion.model.Room;
 import com.hostelregistration.hostelregistrtion.model.Student;
+import com.hostelregistration.hostelregistrtion.model.Warden;
 import com.hostelregistration.hostelregistrtion.payload.JWTLoginSucessResponse;
 import com.hostelregistration.hostelregistrtion.payload.LoginRequest;
 import com.hostelregistration.hostelregistrtion.repository.AdminRepository;
@@ -19,9 +20,12 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Collection;
 import java.util.Optional;
 
@@ -77,20 +81,11 @@ public class AdminController {
     */
 
     @PostMapping("/admin")
-    public ResponseEntity<?> registerAdmin(@Valid @RequestBody Admin admin, BindingResult result){
-
-       // studentValidater.validate(admin,result);
-
-       // System.out.println(result.hasErrors());
-
-
-
-        ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
-        if(errorMap != null)return errorMap;
+    ResponseEntity<Admin> createAdmin(@Validated @RequestBody Admin admin)throws URISyntaxException {
 
         Admin newAdmin = adminService.saveAdmin(admin);
+        return ResponseEntity.created(new URI("/api/admin" +newAdmin.getAdminid())).body(newAdmin);
 
-        return  new ResponseEntity<Admin>(newAdmin, HttpStatus.CREATED);
     }
 
     @PutMapping("/admin")

@@ -25,14 +25,12 @@ public class WardenService {
     }
 
     public void updateResetPasswordToken(String token,String email) throws WardenNotFoundException {
-        Warden warden = wardenRepository.findByEmail(email);
+//        Warden warden = wardenRepository.findByEmail(email);
 
-        if(warden != null){
-            warden.setResetPasswordToken(token);
-            wardenRepository.save(warden);
-        }else{
-            throw new WardenNotFoundException("Could not find any warden" + email);
-        }
+
+//            warden.setResetPasswordToken(token);
+//            wardenRepository.save(warden);
+
     }
 
     public Warden get(String resetPasswordToken){

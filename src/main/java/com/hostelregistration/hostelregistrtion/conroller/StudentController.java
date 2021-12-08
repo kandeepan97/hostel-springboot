@@ -64,6 +64,19 @@ public class StudentController {
         return studentRepository.findAll();
     }
 
+//    @GetMapping("/students/{email}")
+//    Collection<Student> studentsOfWarden(@PathVariable String email) {
+//        List<Student> allAvailableStudents = studentRepository.findAll();
+//        List<Student> result = new LinkedList<>();
+//        for (Student each : allAvailableStudents) {
+//            if (each.getRegistration().getRoom().getHostel().getEmail().equals(email)) {
+//                result.add(each);
+//            }
+//        }
+//        return result;
+//    }
+
+
     @GetMapping("/student/{id}")
     ResponseEntity<?> getStudent(@PathVariable String id){
         Optional<Student> student =studentRepository.findById(id);
@@ -161,7 +174,7 @@ public class StudentController {
 
         for (int i = 0; i < facultyAndGender.size(); i++) {
             for (int j = 0; j < findByYear.size(); j++) {
-                if (facultyAndGender.get(i).getROOMID().equals(findByYear.get(j).getROOMID())) {
+                if (facultyAndGender.get(i).getROOMID().equals(findByYear.get(j).getROOMID()) && facultyAndGender.get(i).getAvailableBeds() > 0) {
                     roomIds.add(facultyAndGender.get(i).getROOMID());
                     allRoomDetails.add(facultyAndGender.get(i));
                     break;

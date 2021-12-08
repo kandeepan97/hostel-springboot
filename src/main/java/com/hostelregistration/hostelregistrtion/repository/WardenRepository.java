@@ -21,4 +21,6 @@ public interface WardenRepository extends JpaRepository<Warden, String> {
 
     public Warden findByResetPasswordToken(String token);
 
+    @Query(value= "SELECT * FROM Warden where Warden.resetPasswordToken = :token", nativeQuery = true)
+    Warden findByToken(@Param("token") String token);
 }
